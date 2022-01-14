@@ -5,12 +5,14 @@ import javax.persistence.*;
 @Entity
 @Table(name = "car")
 public class Car {
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "car")
-    private User user;
-
-    public User getUser() {
-        return user;
-    }
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private Long id;
+    @Column(name = "model")
+    private String model;
+    @Column(name = "series")
+    private int series;
 
     @Override
     public String toString() {
@@ -20,18 +22,6 @@ public class Car {
                 ", series=" + series +
                 '}';
     }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    @Column(name = "model")
-    private String model;
-    @Column(name = "series")
-    private int series;
 
     public Car() {}
 
@@ -63,4 +53,6 @@ public class Car {
     public void setSeries(int series) {
         this.series = series;
     }
+
+
 }
